@@ -1,4 +1,16 @@
+console.log("HEADER.JS LADDAD");
+
 async function loadHeader() {
+
+    const headerElement =
+        document.getElementById("header");
+
+    console.log("headerElement:", headerElement);
+
+    if (!headerElement) {
+        console.error("Hittar inte #header");
+        return;
+    }
 
     const response =
         await fetch("components/header.html");
@@ -6,9 +18,11 @@ async function loadHeader() {
     const html =
         await response.text();
 
-    document.getElementById("header")
-        .innerHTML = html;
+    headerElement.innerHTML = html;
 
 }
 
-loadHeader();
+document.addEventListener(
+    "DOMContentLoaded",
+    loadHeader
+);

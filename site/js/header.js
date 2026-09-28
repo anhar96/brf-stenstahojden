@@ -85,15 +85,26 @@ if (!userMenu) {
 console.log("USER:", user);
 ``
 
-        userMenu.innerHTML = `
-            <span class="user-email">
-                👤 ${user.email}
-            </span>
+const displayName =
+    user.email
+        .split("@")[0]
+        .split(".")
+        .map(
+            name =>
+                name.charAt(0).toUpperCase() +
+                name.slice(1)
+        )
+        .join(" ");
+        
+userMenu.innerHTML = `
+    <span class="user-email">
+        👤 ${displayName}
+    </span>
 
-            <button id="logoutButton">
-                Logga ut
-            </button>
-        `;
+    <button id="logoutButton">
+        Logga ut
+    </button>
+`;
 
         document
             .getElementById("logoutButton")

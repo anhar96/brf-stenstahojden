@@ -1,4 +1,11 @@
-console.log("HEADER.JS LADDAD");
+import { auth }
+from "./firebase-config.js";
+
+import {
+    onAuthStateChanged,
+    signOut
+}
+from "https://www.gstatic.com/firebasejs/12.7.0/firebase-auth.js";
 
 async function loadHeader() {
 
@@ -16,7 +23,9 @@ async function loadHeader() {
         await response.text();
 
     headerElement.innerHTML = html;
-    
+    console.log(
+    document.getElementById("userMenu")
+);
 
     const menuToggle =
         document.getElementById("menuToggle");
@@ -24,20 +33,83 @@ async function loadHeader() {
     const mainNav =
         document.getElementById("mainNav");
 
-  menuToggle.addEventListener(
-    "click",
-    () => {
+    if (menuToggle && mainNav) {
 
-        mainNav.classList.toggle("show");
+        menuToggle.addEventListener(
+            "click",
+            () => {
 
-        if (mainNav.classList.contains("show")) {
-            menuToggle.textContent = "✕";
-        } else {
-            menuToggle.textContent = "☰";
-        }
+                mainNav.classList.toggle("show");
 
+                if (
+                    mainNav.classList.contains("show")
+                ) {
+
+                    menuToggle.textContent = "✕";
+
+                } else {
+
+                    menuToggle.textContent = "☰";
+
+                }
+
+            }
+        );
     }
-);
+
+    const userMenu =
+        document.getElementById("userMenu");
+console.log("userMenu:", userMenu);
+    onAuthStateChanged(auth, (user) => {
+
+        if (!user) {
+console.log("USER:", user);
+``
+           userMenu.innerHTML = `
+    <a href="login.html" class="login-btn">
+        Logga in
+    </a>
+`;
+
+            return;
+        }
+console.log("USER:");
+console.log(user);
+
+console.log("USERMENU:");
+console.log(userMenu);
+if (!userMenu) {
+    console.error("userMenu saknas");
+    return;
+}
+console.log("USER:", user);
+``
+
+        userMenu.innerHTML = `
+            <span class="user-email">
+                👤 ${user.email}
+            </span>
+
+            <button id="logoutButton">
+                Logga ut
+            </button>
+        `;
+
+        document
+            .getElementById("logoutButton")
+            .addEventListener(
+                "click",
+                async () => {
+
+                    await signOut(auth);
+
+                    window.location.href =
+                        "index.html";
+
+                }
+            );
+
+    });
 
 }
 

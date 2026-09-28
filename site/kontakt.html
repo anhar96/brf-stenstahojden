@@ -1,48 +1,55 @@
 <!DOCTYPE html>
 <html lang="sv">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Kontakt - BRF Stenstahöjden</title>
 
-    <link rel="stylesheet" href="css/Style.css">
-</head>
-<body>
+    <title>Logga in | BRF Stenstahöjden</title>
 
- <div id="header"></div>
+    <link rel="stylesheet" href="css/Style. id="header"></div>
 
-<main class="content">
+    <main class="content">
 
-    <h2>Kontakt</h2>
+        <section class="admin-section">
 
-    <p>
-        Har du frågor kring föreningen är du välkommen att kontakta styrelsen.
-    </p>
+            <h1>Logga in</h1>
 
-    <h3>E-post</h3>
+            <div class="form-group">
+                <label for="email">E-post</label>
+                <input
+                    type="email"
+                    id="email"
+                    placeholder="namn@example.se">
+            </div>
 
-    <p>
-        styrelsen@stenstahojden.se
-    </p>
+            <div class="form-group">
+                <label for="password">Lösenord</label>
+                <input
+                    type="password"
+                    id="password"
+                    placeholder="Lösenord">
+            </div>
 
-    <h3>Adress</h3>
+            <button
+                id="loginButton"
+                class="publish-button">
 
-    <p>
-        BRF Stenstahöjden<br>
-        Vallentuna
-    </p>
+                Logga in
 
-    <h3>Felanmälan</h3>
+            </button>
 
-    <p>
-        Information om felanmälan kommer att publiceras här.
-    </p>
+            <p id="loginStatus"></p>
 
-</main>
+        </section>
 
-<footer>
-    <p>© BRF Stenstahöjden</p>
-</footer>
-<script src="js/header.js"></script>
+    </main>
+
+  <script type="module" src="js/header.js"></script>
+<script src ="js/footer.js"></script>
+
+
+
 </body>
+
 </html>

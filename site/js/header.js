@@ -1,14 +1,14 @@
-console.log("HEADER.JS LADDAD");
+
 
 async function loadHeader() {
 
     const headerElement =
         document.getElementById("header");
 
-    console.log("headerElement:", headerElement);
+   
 
     if (!headerElement) {
-        console.error("Hittar inte #header");
+     
         return;
     }
 

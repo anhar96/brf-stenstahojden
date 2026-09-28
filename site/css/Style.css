@@ -598,24 +598,7 @@ nav a:hover {
     background: #3d5d90;
 }
 .menu-toggle {
-
-    display: block;
-
-    position: absolute;
-
-    top: 20px;
-    right: 20px;
-
-    background: none;
-    border: none;
-
-    color: white;
-
-    font-size: 2rem;
-
-    cursor: pointer;
-
-    z-index: 1001;
+    display: none;
 }
 @media (max-width: 768px) {
 

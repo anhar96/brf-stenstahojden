@@ -16,6 +16,7 @@ async function loadHeader() {
         await response.text();
 
     headerElement.innerHTML = html;
+    
 
     const menuToggle =
         document.getElementById("menuToggle");
@@ -23,12 +24,20 @@ async function loadHeader() {
     const mainNav =
         document.getElementById("mainNav");
 
-    menuToggle.addEventListener(
-        "click",
-        () => {
-            mainNav.classList.toggle("show");
+  menuToggle.addEventListener(
+    "click",
+    () => {
+
+        mainNav.classList.toggle("show");
+
+        if (mainNav.classList.contains("show")) {
+            menuToggle.textContent = "✕";
+        } else {
+            menuToggle.textContent = "☰";
         }
-    );
+
+    }
+);
 
 }
 

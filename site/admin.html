@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="sv">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Administration | BRF Stenstahöjden</title>
+
+<link rel="stylesheet" href="css/Style.css">
+</head>
+
+<body>
+
+    <div id="header"></div>
+
+    <main class="admin-page">
+
+        <section class="admin-section">
+
+            <p class="admin-label">Administration</p>
+            <h1>Skapa nytt anslag</h1>
+
+            <form id="anslagForm" class="admin-form">
+
+                <div class="form-group">
+                    <label for="title">Rubrik</label>
+
+                    <input
+                        type="text"
+                        id="title"
+                        maxlength="100"
+                        placeholder="Exempel: Gemensam städdag"
+                        required
+                    >
+                </div>
+
+                <div class="form-group">
+                    <label for="message">Meddelande</label>
+
+                    <textarea
+                        id="message"
+                        rows="8"
+                        maxlength="5000"
+                        placeholder="Skriv informationen här..."
+                        required
+                    ></textarea>
+                </div>
+
+                <label class="checkbox-row">
+                    <input type="checkbox" id="important">
+                    Markera som viktigt
+                </label>
+
+             <button
+    id="submitButton"
+    type="submit"
+    class="publish-button">
+    Publicera anslag
+</button>
+
+                <p id="status" class="admin-status" aria-live="polite"></p>
+
+            </form>
+
+        </section>
+
+        <section class="admin-section published-section">
+
+            <div class="published-heading">
+                <div>
+                    <p class="admin-label">Anslagstavlan</p>
+                    <h2>Publicerade anslag</h2>
+                </div>
+            </div>
+
+            <div id="adminAnslag" class="admin-anslag-list">
+                <p>Hämtar anslag...</p>
+            </div>
+
+        </section>
+
+    </main>
+
+    <footer>
+        <p>© 2026 BRF Stenstahöjden • Vallentuna</p>
+    </footer>
+
+    <script type="module" src="js/admin.js"></script>
+<script src="js/header.js"></script>
+</body>
+
+</html>

@@ -1,14 +1,11 @@
-
+console.log("HEADER.JS LADDAD");
 
 async function loadHeader() {
 
     const headerElement =
         document.getElementById("header");
 
-   
-
     if (!headerElement) {
-     
         return;
     }
 
@@ -19,6 +16,19 @@ async function loadHeader() {
         await response.text();
 
     headerElement.innerHTML = html;
+
+    const menuToggle =
+        document.getElementById("menuToggle");
+
+    const mainNav =
+        document.getElementById("mainNav");
+
+    menuToggle.addEventListener(
+        "click",
+        () => {
+            mainNav.classList.toggle("show");
+        }
+    );
 
 }
 

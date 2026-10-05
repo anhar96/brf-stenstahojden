@@ -709,45 +709,52 @@ nav a:hover {
 
     padding-right: 20px;
 }#userMenu {
-
     justify-self: end;
 
     display: flex;
+    flex-direction: column;
 
     align-items: center;
 
-    gap: 12px;
+    gap: 6px;
 
     color: white;
 
     font-size: 0.9rem;
-
-    padding-right: 15px;
 }
 
 .user-email {
-    white-space: nowrap;
+    margin-bottom: 4px;
 }
 
+.login-btn,
 #logoutButton {
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    width: 120px;
+    height: 40px;
+
+    padding: 0;
 
     background: rgba(47, 50, 55, 0.85);
 
-    color: white;
+    color: white !important;
 
     border: none;
 
-    padding: 8px 16px;
-
     border-radius: 8px;
 
-    cursor: pointer;
+    text-decoration: none;
 
     font-weight: 600;
 
-    transition: 0.3s ease;
+    box-sizing: border-box;
 
-    white-space: nowrap;
+    cursor: pointer;
 }
 
 #logoutButton:hover {

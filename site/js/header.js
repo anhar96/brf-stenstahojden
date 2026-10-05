@@ -101,10 +101,15 @@ userMenu.innerHTML = `
         👤 ${displayName}
     </span>
 
+    <a href="admin.html" class="login-btn">
+        Admin
+    </a>
+
     <button id="logoutButton">
         Logga ut
     </button>
 `;
+
 
         document
             .getElementById("logoutButton")

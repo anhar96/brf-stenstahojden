@@ -73,19 +73,14 @@ loginButton.addEventListener(
                 window.location.href =
                     "admin.html";
 
-            } else if (
-                userData.role === "member"
-            ) {
-
-                window.location.href =
-                    "portal.html";
-
             } else {
 
-                status.textContent =
-                    "❌ Okänd roll.";
+    await auth.signOut();
 
-            }
+    status.textContent =
+        "❌ Du saknar administratörsbehörighet.";
+
+}
 
         } catch (error) {
 

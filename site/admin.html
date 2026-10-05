@@ -3,129 +3,427 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
 
     <title>Administration | BRF Stenstahöjden</title>
+
     <link rel="stylesheet" href="css/Style.css">
 </head>
-<script type="module" src ="js/auth.js" ></script>
 
 <body>
 
     <div id="header"></div>
 
-    <main class="admin-page">
+<main class="admin-dashboard">
 
-        <section class="admin-section">
+    <!-- VÄNSTERMENY -->
 
-            <p class="admin-label">Administration</p>
-            <h1>Skapa nytt anslag</h1>
+    <aside class="admin-sidebar">
 
-            <form id="anslagForm" class="admin-form">
+        <div class="admin-sidebar-heading">
+            <span class="admin-sidebar-icon">⚙️</span>
 
-                <div class="form-group">
-                    <label for="title">Rubrik</label>
-
-                    <input
-                        type="text"
-                        id="title"
-                        maxlength="100"
-                        placeholder="Exempel: Gemensam städdag"
-                        required
-                    >
-                </div>
-
-                <div class="form-group">
-                    <label for="message">Meddelande</label>
-
-                    <textarea
-                        id="message"
-                        rows="8"
-                        maxlength="5000"
-                        placeholder="Skriv informationen här..."
-                        required
-                    ></textarea>
-                </div>
-
-                <label class="checkbox-row">
-                    <input type="checkbox" id="important">
-                    Markera som viktigt
-                </label>
-
-             <button
-    id="submitButton"
-    type="submit"
-    class="publish-button">
-    Publicera anslag
-</button>
-
-                <p id="status" class="admin-status" aria-live="polite"></p>
-
-            </form>
-
-        </section>
-
-        <section class="admin-section published-section">
-
-            <div class="published-heading">
-                <div>
-                    <p class="admin-label">Anslagstavlan</p>
-                    <h2>Publicerade anslag</h2>
-                </div>
+            <div>
+                <strong>Administration</strong>
+                <small>BRF Stenstahöjden</small>
             </div>
-
-            <div id="adminAnslag" class="admin-anslag-list">
-                <p>Hämtar anslag...</p>
-            </div>
-
-        </section>
-        <section class="admin-section">
-    <p class="admin-label">Administratörer</p>
-    <h2>Bjud in ny administratör</h2>
-
-    <form id="inviteForm" class="admin-form">
-        <div class="form-group">
-            <label for="inviteEmail">E-postadress</label>
-
-            <input
-                type="email"
-                id="inviteEmail"
-                placeholder="namn.efternamn@brfstenstahojden.se"
-                required
-            >
         </div>
 
-        <button type="submit" class="publish-button">
-            Skapa inbjudan
-        </button>
+        <nav class="admin-navigation">
 
-        <p id="inviteStatus" class="admin-status"></p>
-    </form>
+            <button
+                type="button"
+                class="admin-nav-button active"
+                data-panel="dashboardPanel"
+            >
+                <span>🏠</span>
+                Översikt
+            </button>
 
-<section class="admin-section">
+            <button
+                type="button"
+                class="admin-nav-button"
+                data-panel="noticesPanel"
+            >
+                <span>📢</span>
+                Anslag
+            </button>
 
-    <p class="admin-p">
-        Registrerade administratörer
-    </p>
+            <button
+                type="button"
+                class="admin-nav-button"
+                data-panel="usersPanel"
+            >
+                <span>👥</span>
+                Administratörer
+            </button>
 
+            <button
+                type="button"
+                class="admin-nav-button"
+                data-panel="documentsPanel"
+            >
+                <span>📄</span>
+                Dokument
+            </button>
 
+        </nav>
 
-    <div id="adminUsersList">
-    </div>
+        <a href="index.html" class="admin-back-link">
+            ← Till hemsidan
+        </a>
 
-</section>
-</section>
+    </aside>
 
+    <!-- ARBETSYTA -->
 
-    </main>
+    <section class="admin-workspace">
 
-    <footer>
-        <p>© 2026 BRF Stenstahöjden • Vallentuna</p>
-    </footer>
+        <!-- ÖVERSIKT -->
 
-    <script type="module" src="js/admin.js"></script>
+        <div
+            id="dashboardPanel"
+            class="admin-panel active"
+        >
+            <div class="admin-panel-header">
+                <div>
+                    <p class="admin-label">Översikt</p>
 
-<script type="module" src="js/header.js"></script>
+                    <h1>Administrationspanel</h1>
+
+                    <p>
+                        Välj en funktion i menyn till vänster.
+                    </p>
+                </div>
+            </div>
+
+            <section class="admin-content-card">
+                <h2>Välkommen</h2>
+
+                <p>
+                    Här kan du hantera anslag, administratörer,
+                    inbjudningar och dokument för BRF Stenstahöjden.
+                </p>
+            </section>
+        </div>
+
+        <!-- ANSLAG -->
+
+        <div
+            id="noticesPanel"
+            class="admin-panel"
+            hidden
+        >
+            <div class="admin-panel-header">
+                <div>
+                    <p class="admin-label">Anslagstavla</p>
+
+                    <h1>Hantera anslag</h1>
+
+                    <p>
+                        Publicera ny information eller uppdatera
+                        ett befintligt anslag.
+                    </p>
+                </div>
+            </div>
+
+            <div class="admin-two-column-layout">
+
+                <section class="admin-content-card">
+
+                    <h2>Nytt anslag</h2>
+
+                    <form
+                        id="anslagForm"
+                        class="admin-form"
+                    >
+                        <div class="form-group">
+                            <label for="title">Rubrik</label>
+
+                            <input
+                                type="text"
+                                id="title"
+                                maxlength="100"
+                                placeholder="Exempel: Gemensam städdag"
+                                required
+                            >
+                        </div>
+
+                        <div class="form-group">
+                            <label for="message">Meddelande</label>
+
+                            <textarea
+                                id="message"
+                                rows="8"
+                                maxlength="5000"
+                                placeholder="Skriv informationen här..."
+                                required
+                            ></textarea>
+                        </div>
+
+                        <label class="checkbox-row">
+                            <input
+                                type="checkbox"
+                                id="important"
+                            >
+
+                            Markera som viktigt
+                        </label>
+
+                        <button
+                            type="submit"
+                            id="submitButton"
+                            class="publish-button"
+                        >
+                            Publicera anslag
+                        </button>
+
+                        <p
+                            id="status"
+                            class="admin-status"
+                            aria-live="polite"
+                        ></p>
+
+                    </form>
+
+                </section>
+
+                <section class="admin-content-card">
+
+                    <h2>Publicerade anslag</h2>
+
+                    <div
+                        id="adminAnslag"
+                        class="admin-anslag-list"
+                    >
+                        <p>Hämtar anslag...</p>
+                    </div>
+
+                </section>
+
+            </div>
+        </div>
+
+        <!-- ADMINISTRATÖRER OCH INBJUDNINGAR -->
+
+        <div
+            id="usersPanel"
+            class="admin-panel"
+            hidden
+        >
+            <div class="admin-panel-header">
+                <div>
+                    <p class="admin-label">Behörigheter</p>
+
+                    <h1>Administratörer</h1>
+
+                    <p>
+                        Bjud in nya administratörer och se vilka
+                        personer som har tillgång till adminpanelen.
+                    </p>
+                </div>
+            </div>
+
+            <div class="admin-two-column-layout">
+
+                <!-- NY INBJUDAN -->
+
+                <section class="admin-content-card">
+
+                    <h2>Bjud in administratör</h2>
+
+                    <form
+                        id="inviteForm"
+                        class="admin-form"
+                    >
+                        <div class="form-group">
+                            <label for="inviteEmail">
+                                E-postadress
+                            </label>
+
+                            <input
+                                type="email"
+                                id="inviteEmail"
+                                placeholder="namn.efternamn@brfstenstahojden.se"
+                                required
+                            >
+                        </div>
+
+                        <div class="form-group">
+                            <label for="inviteRole">Roll</label>
+
+                            <select id="inviteRole">
+                                <option value="admin">
+                                    Administratör
+                                </option>
+                            </select>
+                        </div>
+
+                        <button
+                            type="submit"
+                            class="publish-button"
+                        >
+                            Skapa inbjudan
+                        </button>
+
+                        <p
+                            id="inviteStatus"
+                            class="admin-status"
+                            aria-live="polite"
+                        ></p>
+
+                    </form>
+
+                </section>
+
+                <!-- AKTIVA ADMINISTRATÖRER -->
+
+                <section class="admin-content-card">
+
+                    <h2>Aktiva administratörer</h2>
+
+                    <div
+                        id="adminUsersList"
+                        class="admin-list"
+                    >
+                        <p>Hämtar administratörer...</p>
+                    </div>
+
+                </section>
+
+            </div>
+
+            <!-- VÄNTANDE INBJUDNINGAR -->
+
+            <section class="admin-content-card admin-invitations-card">
+
+                <h2>Väntande inbjudningar</h2>
+
+                <div
+                    id="inviteList"
+                    class="admin-list"
+                >
+                    <p>Hämtar inbjudningar...</p>
+                </div>
+
+            </section>
+
+        </div>
+
+        <!-- DOKUMENT -->
+
+        <div
+            id="documentsPanel"
+            class="admin-panel"
+            hidden
+        >
+            <div class="admin-panel-header">
+                <div>
+                    <p class="admin-label">Filer</p>
+
+                    <h1>Dokument</h1>
+
+                    <p>
+                        Hantera föreningens publika dokument.
+                    </p>
+                </div>
+            </div>
+
+            <section class="admin-content-card admin-placeholder">
+                <span class="admin-placeholder-icon">📄</span>
+
+                <h2>Dokumenthantering kommer snart</h2>
+
+                <p>
+                    Här kommer administratörer kunna ladda upp,
+                    publicera och ta bort dokument.
+                </p>
+            </section>
+        </div>
+
+    </section>
+
+</main>
+
+    <div id="footer"></div>
+
+    <script type="module" src ="js/header.js"></script>
+    <script type="module" src ="js/auth.js"></script>
+    <script type="module" src ="js/admin.js"></script>
+    <script src ="js/footer.js"></script>
+
+    <script>
+        const navigationButtons =
+            document.querySelectorAll(".admin-nav-button");
+
+        const overviewButtons =
+            document.querySelectorAll("[data-open-panel]");
+
+        const panels =
+            document.querySelectorAll(".admin-panel");
+
+        function openAdminPanel(panelId) {
+            panels.forEach((panel) => {
+                const shouldOpen =
+                    panel.id === panelId;
+
+                panel.hidden =
+                    !shouldOpen;
+
+                panel.classList.toggle(
+                    "active",
+                    shouldOpen
+                );
+            });
+
+            navigationButtons.forEach((button) => {
+                button.classList.toggle(
+                    "active",
+                    button.dataset.panel === panelId
+                );
+            });
+
+            if (window.innerWidth <= 800) {
+                const workspace =
+                    document.querySelector(
+                        ".admin-workspace"
+                    );
+
+                if (workspace) {
+                    workspace.scrollIntoView({
+                        behavior: "smooth",
+                        block: "start"
+                    });
+                }
+            }
+        }
+
+        navigationButtons.forEach((button) => {
+            button.addEventListener(
+                "click",
+                () => {
+                    openAdminPanel(
+                        button.dataset.panel
+                    );
+                }
+            );
+        });
+
+        overviewButtons.forEach((button) => {
+            button.addEventListener(
+                "click",
+                () => {
+                    openAdminPanel(
+                        button.dataset.openPanel
+                    );
+                }
+            );
+        });
+    </script>
 
 </body>
 

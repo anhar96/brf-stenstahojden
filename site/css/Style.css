@@ -770,4 +770,43 @@ nav a:hover {
 #logoutButton:hover {
 
     background: rgba(255,255,255,0.15);
+}.admin-user {
+
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: center;
+
+    padding: 12px 18px;
+
+    margin-bottom: 10px;
+
+    background: white;
+
+    border-radius: 10px;
+
+    border-left: 4px solid var(--green);
+
+    box-shadow: 0 2px 6px rgba(0,0,0,.06);
+}
+
+.admin-user h3 {
+
+    margin: 0;
+
+    font-size: 1rem;
+
+    color: var(--green);
+}
+
+
+.admin-p {
+    color: #2F3237;
+
+    font-size: 1.1rem;
+
+    font-weight: 700;
+
+    margin-top: 4px;
 }

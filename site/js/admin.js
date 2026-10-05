@@ -5,11 +5,13 @@ import {
     collection,
     deleteDoc,
     doc,
+    getDocs,
     onSnapshot,
     serverTimestamp,
     setDoc,
     updateDoc
-} from "https://www.gstatic.com/firebasejs/12.7.0/firebase-firestore.js";
+}
+from "https://www.gstatic.com/firebasejs/12.7.0/firebase-firestore.js";
 
 console.log("ADMIN.JS LADDAD");
 
@@ -349,5 +351,98 @@ if (inviteList) {
         }
     );
 }
+async function loadAdminUsers() {
 
+    const container =
+        document.getElementById(
+            "adminUsersList"
+        );
+
+    if (!container) {
+        return;
+    }
+
+    const snapshot =
+        await getDocs(
+            collection(db, "users")
+        );
+
+    container.innerHTML = "";
+
+    snapshot.forEach((userDoc) => {
+
+        const user =
+            userDoc.data();
+
+        const card =
+            document.createElement("div");
+
+        card.className =
+            "admin-user";
+
+       card.innerHTML = `
+    <div class="admin-anslag-content">
+
+        <h3>
+            ${user.email}
+        </h3>
+
+        <p class="admin-p">
+            Roll: ${user.role}
+        </p>
+
+    </div>
+
+    <button class="delete-button">
+        Ta bort
+    </button>
+`;
+
+        container.appendChild(card);
+const deleteButton =
+    card.querySelector(".delete-button");
+
+deleteButton.addEventListener(
+    "click",
+    async () => {
+
+        const confirmed =
+            confirm(
+                `Ta bort ${user.email}?`
+            );
+
+        if (!confirmed) {
+            return;
+        }
+
+        try {
+
+            await deleteDoc(
+                doc(
+                    db,
+                    "users",
+                    userDoc.id
+                )
+            );
+
+            alert(
+                "Användaren togs bort."
+            );
+
+        } catch (error) {
+
+            console.error(error);
+
+            alert(
+                "Kunde inte ta bort användaren."
+            );
+
+        }
+
+    }
+);
+    });
+
+}
+loadAdminUsers();
 loadAdminNotices();

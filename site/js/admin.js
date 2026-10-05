@@ -7,6 +7,7 @@ import {
     doc,
     onSnapshot,
     serverTimestamp,
+    setDoc,
     updateDoc
 } from "https://www.gstatic.com/firebasejs/12.7.0/firebase-firestore.js";
 
@@ -224,6 +225,129 @@ async function deleteNotice(id) {
 
     }
 
+}
+const inviteForm = document.getElementById("inviteForm");
+const inviteEmailInput = document.getElementById("inviteEmail");
+const inviteStatus = document.getElementById("inviteStatus");
+const inviteList = document.getElementById("inviteList");
+
+if (inviteForm) {
+    inviteForm.addEventListener("submit", async (event) => {
+        event.preventDefault();
+
+        const email = inviteEmailInput.value
+            .trim()
+            .toLowerCase();
+
+        const allowedDomain = "@brfstenstahojden.se";
+
+        if (!email.endsWith(allowedDomain)) {
+            inviteStatus.textContent =
+                "E-postadressen måste tillhöra brfstenstahojden.se.";
+
+            inviteStatus.className = "admin-status error";
+            return;
+        }
+
+        try {
+            await setDoc(
+                doc(db, "invites", email),
+                {
+                    email,
+                    role: "admin",
+                    used: false,
+                    createdAt: serverTimestamp()
+                }
+            );
+
+            inviteForm.reset();
+
+            inviteStatus.textContent =
+                "Inbjudan har skapats.";
+
+            inviteStatus.className =
+                "admin-status success";
+        } catch (error) {
+            console.error(
+                "Kunde inte skapa inbjudan:",
+                error
+            );
+
+            inviteStatus.textContent =
+                "Inbjudan kunde inte skapas.";
+
+            inviteStatus.className =
+                "admin-status error";
+        }
+    });
+}
+
+if (inviteList) {
+    onSnapshot(
+        collection(db, "invites"),
+        (snapshot) => {
+            inviteList.innerHTML = "";
+
+            if (snapshot.empty) {
+                inviteList.innerHTML =
+                    "<p>Det finns inga aktiva inbjudningar.</p>";
+
+                return;
+            }
+
+            snapshot.forEach((inviteSnapshot) => {
+                const invite = inviteSnapshot.data();
+
+                if (invite.used) {
+                    return;
+                }
+
+                const item = document.createElement("article");
+                item.className = "admin-anslag";
+
+                const information = document.createElement("div");
+
+                const emailHeading = document.createElement("h3");
+                emailHeading.textContent = invite.email;
+
+                const roleText = document.createElement("p");
+                roleText.textContent = "Roll: Administratör";
+
+                information.append(emailHeading, roleText);
+
+                const removeButton =
+                    document.createElement("button");
+
+                removeButton.type = "button";
+                removeButton.className = "delete-button";
+                removeButton.textContent = "Ta bort inbjudan";
+
+                removeButton.addEventListener(
+                    "click",
+                    async () => {
+                        const confirmed = window.confirm(
+                            `Ta bort inbjudan för ${invite.email}?`
+                        );
+
+                        if (!confirmed) {
+                            return;
+                        }
+
+                        await deleteDoc(
+                            doc(
+                                db,
+                                "invites",
+                                inviteSnapshot.id
+                            )
+                        );
+                    }
+                );
+
+                item.append(information, removeButton);
+                inviteList.appendChild(item);
+            });
+        }
+    );
 }
 
 loadAdminNotices();

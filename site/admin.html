@@ -79,6 +79,31 @@
             </div>
 
         </section>
+        <section class="admin-section">
+    <p class="admin-label">Administratörer</p>
+    <h2>Bjud in ny administratör</h2>
+
+    <form id="inviteForm" class="admin-form">
+        <div class="form-group">
+            <label for="inviteEmail">E-postadress</label>
+
+            <input
+                type="email"
+                id="inviteEmail"
+                placeholder="namn.efternamn@brfstenstahojden.se"
+                required
+            >
+        </div>
+
+        <button type="submit" class="publish-button">
+            Skapa inbjudan
+        </button>
+
+        <p id="inviteStatus" class="admin-status"></p>
+    </form>
+
+    <div id="inviteList" class="admin-anslag-list"></div>
+</section>
 
     </main>
 

@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="sv">
+
+<head>
+    <meta charset="UTF-8">
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Aktivera administratörskonto | BRF Stenstahöjden</title>
+
+ <link rel="stylesheet" href="css/Style.css">
+</head>
+
+<body>
+
+    <div id="header"></div>
+
+    <main class="admin-page">
+        <section class="admin-section">
+            <p class="admin-label">Inbjudan</p>
+            <h1>Aktivera administratörskonto</h1>
+
+            <p>
+                Ange e-postadressen som inbjudan skickades till
+                och välj ett eget lösenord.
+            </p>
+
+            <form id="registerForm" class="admin-form">
+                <div class="form-group">
+                    <label for="registerEmail">E-postadress</label>
+
+                    <input
+                        type="email"
+                        id="registerEmail"
+                        autocomplete="email"
+                        required
+                    >
+                </div>
+
+                <div class="form-group">
+                    <label for="registerPassword">Lösenord</label>
+
+                    <input
+                        type="password"
+                        id="registerPassword"
+                        minlength="8"
+                        autocomplete="new-password"
+                        required
+                    >
+                </div>
+
+                <div class="form-group">
+                    <label for="confirmPassword">
+                        Bekräfta lösenord
+                    </label>
+
+                    <input
+                        type="password"
+                        id="confirmPassword"
+                        minlength="8"
+                        autocomplete="new-password"
+                        required
+                    >
+                </div>
+
+                <button type="submit" class="publish-button">
+                    Aktivera konto
+                </button>
+
+                <p id="registerStatus" class="admin-status"></p>
+            </form>
+        </section>
+    </main>
+
+    <div id="footer"></div>
+
+  
+<script type="module" src="js/header.js"></script>
+<script src ="js/footer.js"></script>
+<script type="module" src="js/register.js"></script>
+
+
+</body>
+
+</html>
